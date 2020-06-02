@@ -7,7 +7,7 @@ from google.cloud import firestore
 
 import os
 print('Credendtials from environ: {}'.format(os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')))
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/bravo/google_creds.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/pi/bravo/google-creds.json"
 db = firestore.Client()
 # [START listen_for_changes]
 print('GOT HERE')
