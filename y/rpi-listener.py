@@ -21,11 +21,17 @@ def on_snapshot(col_snapshot, changes, read_time):
         if change.type.name == 'ADDED':
             print(u'New message received\n ID: {}'.format(change.document.id))
             print(u'MESSAGE: {}'.format(change.document.get('original')))
-        elif change.type.name == 'MODIFIED':
-            print(u'Modified city: {}'.format(change.document.id))
-        elif change.type.name == 'REMOVED':
-            print(u'Removed city: {}'.format(change.document.id))
-            delete_done.set()
+            newpid = os.fork()
+            if newpid == 0:
+                child(change.document.get('original'))
+        # elif change.type.name == 'MODIFIED':
+        #     print(u'Modified city: {}'.format(change.document.id))
+        # elif change.type.name == 'REMOVED':
+        #     print(u'Removed city: {}'.format(change.document.id))
+        #     delete_done.set()
+def child(message):
+    print("Child executing...")
+    os.system('/home/pi/Desktop/rpi-rgb-led-matrix-master/examples-api-use/scrolling-text-example --led-rows=16 --led-cols=64 --led-no-hardware-pulse -s 3 -f /home/pi/Desktop/rpi-rgb-led-matrix-master/fonts/6x13.bdf ' + message)
 
 ####col_query = db.collection(u'cities').where(u'state', u'==', u'CA')
 col_query = db.collection(u'messages')
