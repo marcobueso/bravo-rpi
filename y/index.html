@@ -35,11 +35,25 @@
       <h2>Welcome</h2>
       <h1>Firebase Hosting Setup Complete</h1>
       <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://us-central1-bravo-rpi.cloudfunctions.net/addMessage?text= Clicked!">Open Hosting Documentation</a>
+      
+      <p>
+        <label>Send me a message: </label>
+          <input type = "text"
+                 id = "userMessage"
+                 placeholder = "message here"
+                 maxLength = 140 />
+      </p>
+
+      <script type="text/javascript">
+        document.getElementById("userMessage").oninput = function() {
+          document.getElementById("sendMsg").href="https://us-central1-bravo-rpi.cloudfunctions.net/addMessage?text=".concat(document.getElementById("userMessage").value); 
+          return false;
+        };
+      </script>
+
+      <a id="sendMsg" target="_blank" href="https://us-central1-bravo-rpi.cloudfunctions.net/addMessage?text=Clicked!">Send</a>
     </div>
     <p id="load">Firebase SDK Loading&hellip;</p>
-
-    <button onclick = "console.log("Hello World!");">Click me pleas</button>
 
     <script>
       document.addEventListener('DOMContentLoaded', function() {
