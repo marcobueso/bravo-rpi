@@ -22,6 +22,12 @@ exports.addMessage = functions.https.onRequest(async (req, res) => {
     res.json({result: `Message with ID: ${writeResult.id} added.`});
   });
 
+
+
+exports.helloError = functions.https.onRequest((request, response) => {
+console.log('I am a log entry!');
+response.send('Hello World...');
+});
   // Listens for new messages added to /messages/:documentId/original and creates an
 // uppercase version of the message to /messages/:documentId/uppercase
 // exports.makeUppercase = functions.firestore.document('/messages/{documentId}')
